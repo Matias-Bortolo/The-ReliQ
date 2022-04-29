@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class GuardianAttack : MonoBehaviour
 {
-    public GameObject followRadius;
-    public float cooldown;
-
     [HideInInspector]
     public bool attacking;
 
-    private Animator _animator;
+    [SerializeField] private GuardianVisionRange _visionScript;
+    [SerializeField] private float _cooldown;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SphereCollider attackCollider;
+
     private float _time;
 
     private void Awake()
     {
-        _animator = GetComponentInParent<Animator>();
-        _time = cooldown;
+        _time = _cooldown;
     }
 
     private void Update()
@@ -25,9 +25,9 @@ public class GuardianAttack : MonoBehaviour
 
         _time += Time.deltaTime;
 
-        if (_time >= cooldown)
+        if (_time >= _cooldown)
         {
-            gameObject.GetComponent<SphereCollider>().enabled = true;
+            attackCollider.enabled = true;
         }
     }
 
@@ -35,19 +35,19 @@ public class GuardianAttack : MonoBehaviour
     {
         if (attacking)
         {
-            gameObject.GetComponent<SphereCollider>().enabled = false;
-            followRadius.GetComponent<GuardianVisionRange>().following = false;
+            attackCollider.enabled = false;
+            _visionScript.following = false;
             _time = 0;
         }
-        else if (attacking == false && followRadius.GetComponent<GuardianVisionRange>().trigger)
+        else if (attacking == false && _visionScript.trigger)
         {
-            followRadius.GetComponent<GuardianVisionRange>().following = true;
+            _visionScript.following = true;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && _time >= cooldown)
+        if (other.CompareTag("Player") && _time >= _cooldown)
         {
             attacking = true;
             _animator.SetTrigger("Attacking");

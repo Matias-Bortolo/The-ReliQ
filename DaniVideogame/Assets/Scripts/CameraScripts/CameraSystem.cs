@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraSystem : MonoBehaviour
 {
-    public GameObject player;
-    public float yAxis, zAxis;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float yAxis, zAxis;
 
     private void Start()
     {

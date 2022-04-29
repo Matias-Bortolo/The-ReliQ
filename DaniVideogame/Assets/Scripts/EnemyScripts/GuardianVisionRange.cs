@@ -8,15 +8,10 @@ public class GuardianVisionRange : MonoBehaviour
     [HideInInspector]
     public bool following, trigger;
 
-    [SerializeField]
-    private GameObject _enemy, _player;
-
-    private Animator _animator;
-
-    private void Awake()
-    {
-        _animator = GetComponentInParent<Animator>();
-    }
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Rigidbody _player;
+    [SerializeField] private NavMeshAgent _enemy;
+    [SerializeField] private SphereCollider _visionCollider;
 
     private void Update()
     {
@@ -27,14 +22,14 @@ public class GuardianVisionRange : MonoBehaviour
     {
         if (following)
         {
-            _enemy.GetComponent<NavMeshAgent>().isStopped = false;
+            _enemy.isStopped = false;
             _animator.SetBool("Walking", true);
 
-            _enemy.GetComponent<NavMeshAgent>().destination = _player.GetComponent<Rigidbody>().position;
+            _enemy.destination = _player.position;
         }
         else
         {
-            _enemy.GetComponent<NavMeshAgent>().isStopped = true;
+            _enemy.isStopped = true;
             _animator.SetBool("Walking", false);
         }
     }
@@ -45,7 +40,7 @@ public class GuardianVisionRange : MonoBehaviour
         {
             following = true;
             trigger = true;
-            gameObject.GetComponent<SphereCollider>().enabled = false;
+            _visionCollider.enabled = false;
         }
     }
 }

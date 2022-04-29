@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class PushableBox : MonoBehaviour
 {
-    [SerializeField]
-    private float _units, _boxSpeed;
+    [SerializeField] private float _units, _boxSpeed;
+    [SerializeField] private Rigidbody _RB;
 
-    private Rigidbody _RB;
     private Vector3 _destination, _face;
     private bool _activate;
     private float _time;
-
-    private void Awake()
-    {
-        _RB = GetComponent<Rigidbody>();
-    }
 
     private void Start()
     {
@@ -82,7 +76,5 @@ public class PushableBox : MonoBehaviour
 
             _activate = true;
         }
-    }
-
-    
+    }   
 }

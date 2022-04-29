@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public float speed, yDisplacement;
-    public GameObject[] plates, boxes;
+    [SerializeField] private float speed, yDisplacement;
+    [SerializeField] private Rigidbody _RB;
+    [SerializeField] private PressurePlate[] _plates;
+    [SerializeField] private PushableBox[] _boxes;
 
     private Vector3 _destination;
-    private Rigidbody _RB;
     private bool _allBoxesOnTop;
     private float _time;
-
-    private void Awake()
-    {
-        _RB = GetComponent<Rigidbody>();
-    }
 
     private void Start()
     {
@@ -25,9 +21,9 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < plates.Length; i++)
+        for (int i = 0; i < _plates.Length; i++)
         {
-            if (plates[i].GetComponent<PressurePlate>().boxOnTop)
+            if (_plates[i].boxOnTop)
             {
                 _allBoxesOnTop = true;
             }
@@ -51,9 +47,9 @@ public class Door : MonoBehaviour
 
         if (_time >= .2f)
         {
-            for (int i = 0; i < boxes.Length; i++)
+            for (int i = 0; i < _boxes.Length; i++)
             {
-                boxes[i].GetComponent<PushableBox>().enabled = false;
+                _boxes[i].enabled = false;
             }
         }       
     }

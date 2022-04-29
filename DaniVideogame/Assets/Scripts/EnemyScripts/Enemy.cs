@@ -13,15 +13,12 @@ public class Enemy : MonoBehaviour
             hp--;
             Debug.Log("Enemigo HP: " + hp);
 
-            FindObjectOfType<AudioManager>().Play("EnemyReceivingDamage");
-        }
-    }
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+            }
 
-    private void Update()
-    {
-        if (hp <= 0)
-        {
-            Destroy(gameObject);
+            FindObjectOfType<AudioManager>().Play("EnemyReceivingDamage");
         }
     }
 }

@@ -421,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4838945090975962758
 Transform:
   m_ObjectHideFlags: 0
@@ -568,7 +568,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4838945091046401903}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 12.667916, y: 2.4500809, z: -7.8622284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -756,8 +756,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   following: 0
   trigger: 0
-  _enemy: {fileID: 4838945091046401903}
+  _animator: {fileID: 4838945091046401904}
   _player: {fileID: 0}
+  _enemy: {fileID: 4838945091046401905}
+  _visionCollider: {fileID: 4838945091257905440}
 --- !u!135 &4838945091257905440
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1290,7 +1292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4838945092150992107}
   m_LocalRotation: {x: 6.564088e-16, y: -0.000000009664853, z: 0.00000028186415, w: 1}
-  m_LocalPosition: {x: -0.000000059466554, y: 1.0002877, z: -0.00953796}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4838945090639661779}
@@ -1495,9 +1497,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba318b233b812a44893868ca56fd2ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followRadius: {fileID: 0}
-  cooldown: 0
   attacking: 0
+  _visionScript: {fileID: 4838945091257905441}
+  _cooldown: 1.5
+  _animator: {fileID: 4838945091046401904}
+  attackCollider: {fileID: 4838945092404250425}
 --- !u!135 &4838945092404250425
 SphereCollider:
   m_ObjectHideFlags: 0

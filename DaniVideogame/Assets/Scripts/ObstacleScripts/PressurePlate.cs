@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    [HideInInspector]
-    public bool boxOnTop;
+    [HideInInspector] public bool boxOnTop;
 
     private void OnTriggerStay(Collider other)
     {
